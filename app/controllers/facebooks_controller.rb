@@ -1,7 +1,7 @@
 class FacebooksController < ApplicationController
   def index
     if session['oauth'].blank?
-      @oauth = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, root_url.chop+facebooks_callback_path)
+      @oauth = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, root_url.chop+facebooks_callback_path+"/")
       session['oauth'] = @oauth
     else
       @graph = Koala::Facebook::GraphAPI.new(session['access_token'])
