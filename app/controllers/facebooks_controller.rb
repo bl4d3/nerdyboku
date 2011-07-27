@@ -1,8 +1,12 @@
 class FacebooksController < ApplicationController
-  def index
-    if session['oauth'].blank?
+  def canvas
       @oauth = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, root_url.chop+facebooks_callback_path+"/")
       session['oauth'] = @oauth
+  end
+  
+  def index
+    if session['oauth'].blank?
+      redirect_to facebooks_canvas_path
     else
       @graph = Koala::Facebook::GraphAPI.new(session['access_token'])
     end

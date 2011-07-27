@@ -1,9 +1,5 @@
 <h1>Facebooks</h1>
-<% if session['access_token'].blank? %>
-  <%= link_to 'Login', @oauth.url_for_oauth_code(:permissions => ["publish_stream","email"]) %>
-<% else %>
-  <%= link_to 'Logout', facebooks_logout_path %><br />
-  <% @graph.get_object("me").each{|k,v| %>
-    <%= "#{k}: #{v}" %><br />
-  <% } %>  
-<% end %>
+<%= link_to 'Logout', facebooks_logout_path %><br />
+<% @graph.get_object("me").each{|k,v| %>
+  <%= "#{k}: #{v}" %><br />
+<% } %>
